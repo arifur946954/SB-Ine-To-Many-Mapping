@@ -3,6 +3,9 @@ package com.jpa.JpaCrud.entity;
 import jakarta.persistence.*;
 import org.springframework.context.annotation.Primary;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "instructor")
 public class Instructor {
@@ -16,6 +19,10 @@ public class Instructor {
     private String lastName;
     @Column(name = "email")
     private String email;
+    @OneToMany(mappedBy = "instructor",
+            cascade={CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+
+    private List<Course>  courses;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetails instructorDetails;
@@ -78,5 +85,22 @@ public class Instructor {
                 ", email='" + email + '\'' +
                 ", instructorDetails=" + instructorDetails +
                 '}';
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    public void add(Course tempCourse){
+        if (courses==null){
+            courses=new ArrayList<>();
+        }
+        courses.add(tempCourse);
+        tempCourse.setInstructor(this);
+
     }
 }
