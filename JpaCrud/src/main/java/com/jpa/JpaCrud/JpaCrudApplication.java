@@ -1,6 +1,7 @@
 package com.jpa.JpaCrud;
 
 import com.jpa.JpaCrud.dao.AppDao;
+import com.jpa.JpaCrud.entity.Course;
 import com.jpa.JpaCrud.entity.Instructor;
 import com.jpa.JpaCrud.entity.InstructorDetails;
 import org.springframework.boot.CommandLineRunner;
@@ -22,9 +23,34 @@ public class JpaCrudApplication {
 			//findInstructor(appDao);
 			//deleteInstructor(appDao);
 			//findInstructorDetails(appDao);
-			deleteInstructorDetails(appDao);
+			//deleteInstructorDetails(appDao);
+			createInstructorWithCourse(appDao);
 			//test file
 		};
+	}
+
+	private void createInstructorWithCourse(AppDao appDao) {
+		Instructor tempInstructor=new Instructor("Test8","Rahman","test8@gmail.com");
+		InstructorDetails tempInstructorDetails=new InstructorDetails("test8@youtube.com","swimming");
+		tempInstructor.setInstructorDetails(tempInstructorDetails);
+		Course course1=new Course("CSE-701");
+		Course course2=new Course("CSE-702");
+		Course course3=new Course("CSE-703");
+		//associate the obj
+		tempInstructor.add(course1);
+		tempInstructor.add(course2);
+		tempInstructor.add(course3);
+		appDao.save(tempInstructor);
+
+
+		System.out.println(tempInstructor);
+		tempInstructor.setInstructorDetails(tempInstructorDetails);
+		appDao.save(tempInstructor);
+
+
+		System.out.println("done");
+
+
 	}
 
 	private void deleteInstructorDetails(AppDao appDao) {
@@ -36,7 +62,7 @@ public class JpaCrudApplication {
 		int theId=1;
 	InstructorDetails tempInatructorsDetails=	appDao.findInstructoDetailsById(theId);
 		System.out.println(tempInatructorsDetails);
-		System.out.println(tempInatructorsDetails.getInstructor());
+		//System.out.println(tempInatructorsDetails.getInstructor());
 
 	}
 
@@ -53,8 +79,8 @@ public class JpaCrudApplication {
 	}
 
 	private void createConstructor(AppDao appDao) {
-		Instructor tempInstructor=new Instructor("Test5","Rahman","test5@gmail.com");
-		InstructorDetails tempInstructorDetails=new InstructorDetails("test5@youtube.com","swimming");
+		Instructor tempInstructor=new Instructor("Test1","Rahman","test5@gmail.com");
+		InstructorDetails tempInstructorDetails=new InstructorDetails("test1@youtube.com","swimming");
 		//associate the obj
 		tempInstructor.setInstructorDetails(tempInstructorDetails);
 		System.out.println(tempInstructor);
