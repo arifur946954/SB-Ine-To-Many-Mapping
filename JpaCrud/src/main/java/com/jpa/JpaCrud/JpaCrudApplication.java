@@ -24,18 +24,27 @@ public class JpaCrudApplication {
 			//deleteInstructor(appDao);
 			//findInstructorDetails(appDao);
 			//deleteInstructorDetails(appDao);
-			createInstructorWithCourse(appDao);
+			//createInstructorWithCourse(appDao);
+			findInstructorWithCourses(appDao);
 			//test file
 		};
 	}
 
+	private void findInstructorWithCourses(AppDao appDao) {
+		int theId=1;
+		Instructor tempIns= appDao.findInstructorById(theId);
+		System.out.println("temp instructor is: "+tempIns);
+		System.out.println("course is"+tempIns.getCourses());
+		System.out.println("done!!!!!!");
+	}
+
 	private void createInstructorWithCourse(AppDao appDao) {
-		Instructor tempInstructor=new Instructor("Test8","Rahman","test8@gmail.com");
-		InstructorDetails tempInstructorDetails=new InstructorDetails("test8@youtube.com","swimming");
+		Instructor tempInstructor=new Instructor("Test9","Rahman","test9@gmail.com");
+		InstructorDetails tempInstructorDetails=new InstructorDetails("test9@youtube.com","swimming");
 		tempInstructor.setInstructorDetails(tempInstructorDetails);
-		Course course1=new Course("CSE-701");
-		Course course2=new Course("CSE-702");
-		Course course3=new Course("CSE-703");
+		Course course1=new Course("CSE-801");
+		Course course2=new Course("CSE-802");
+		Course course3=new Course("CSE-803");
 		//associate the obj
 		tempInstructor.add(course1);
 		tempInstructor.add(course2);
@@ -54,7 +63,7 @@ public class JpaCrudApplication {
 	}
 
 	private void deleteInstructorDetails(AppDao appDao) {
-		int theId=4;
+		int theId=1;
 		appDao.deleteInstructorDetails(theId);
 	}
 

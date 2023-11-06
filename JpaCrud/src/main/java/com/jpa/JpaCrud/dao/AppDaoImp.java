@@ -30,6 +30,7 @@ public class AppDaoImp implements AppDao{
     @Transactional
     public void deleteInstructorById(int theId) {
       Instructor theInstructor=   entityManager.find(Instructor.class ,theId);
+        System.out.println("Output test is "+theInstructor);
         entityManager.remove(theInstructor);
     }
 
@@ -42,6 +43,7 @@ public class AppDaoImp implements AppDao{
     @Transactional
     public void deleteInstructorDetails(int theId) {
        InstructorDetails tempIns=  entityManager.find(InstructorDetails.class,theId);
+        System.out.println("Output test is "+tempIns);
        tempIns.getInstructor().setInstructorDetails(null);
         entityManager.remove(tempIns);
         //this is bi

@@ -20,6 +20,7 @@ public class Instructor {
     @Column(name = "email")
     private String email;
     @OneToMany(mappedBy = "instructor",
+            fetch = FetchType.EAGER,
             cascade={CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 
     private List<Course>  courses;
