@@ -28,9 +28,19 @@ public class JpaCrudApplication {
 			//deleteInstructorDetails(appDao);
 			//createInstructorWithCourse(appDao);
 			//findInstructorWithCourses(appDao);
-			findCourseForInstructor(appDao);
+			//findCourseForInstructor(appDao);
+			findInstructorWithJoinFetch(appDao);
 			//test file
 		};
+	}
+
+	private void findInstructorWithJoinFetch(AppDao appDao) {
+		int theId=1;
+		System.out.println("id is"+theId);
+	Instructor tempInstructor=	appDao.findInstructorJoinFetch(theId);
+		System.out.println("Instructor is :"+tempInstructor);
+		System.out.println("Course detail is:"+tempInstructor.getCourses());
+		System.out.println("Done!!!!!!!!");
 	}
 
 	private void findCourseForInstructor(AppDao appDao) {
