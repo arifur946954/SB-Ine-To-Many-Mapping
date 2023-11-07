@@ -1,7 +1,10 @@
 package com.jpa.JpaCrud.dao;
 
+import com.jpa.JpaCrud.entity.Course;
 import com.jpa.JpaCrud.entity.Instructor;
 import com.jpa.JpaCrud.entity.InstructorDetails;
+
+import java.util.List;
 
 public interface AppDao {
     void save(Instructor theInstructor);
@@ -9,4 +12,5 @@ public interface AppDao {
     void deleteInstructorById(int theId);
     InstructorDetails findInstructoDetailsById(int theId);
     void deleteInstructorDetails(int theId);
+    List<Course> findCourseByInstructor(int theId);
 }

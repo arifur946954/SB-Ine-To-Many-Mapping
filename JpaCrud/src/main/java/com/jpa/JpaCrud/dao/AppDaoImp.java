@@ -1,11 +1,16 @@
 package com.jpa.JpaCrud.dao;
 
+import com.jpa.JpaCrud.entity.Course;
 import com.jpa.JpaCrud.entity.Instructor;
 import com.jpa.JpaCrud.entity.InstructorDetails;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
 @Repository
 public class AppDaoImp implements AppDao{
     private EntityManager entityManager;
@@ -47,6 +52,17 @@ public class AppDaoImp implements AppDao{
        tempIns.getInstructor().setInstructorDetails(null);
         entityManager.remove(tempIns);
         //this is bi
+    }
+
+    @Override
+    public List<Course> findCourseByInstructor(int theId) {
+        TypedQuery<Course> query=entityManager.createQuery(
+                "from Course where instructor.id=:data", Course.class);
+        query.setParameter("data",theId);
+        List<Course> courses=query.getResultList();
+        return courses;
+
+
     }
 
 
