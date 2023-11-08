@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -35,6 +36,15 @@ public class AppDaoImp implements AppDao{
     @Transactional
     public void deleteInstructorById(int theId) {
       Instructor theInstructor=   entityManager.find(Instructor.class ,theId);
+      List<Course> courses=theInstructor.getCourses();
+      for (Course tempCourse:courses){
+          //we  use null coz there is a link with course and instructor thats why we cannot delete it
+          //so if we set null in we can delete it.
+          tempCourse.setInstructor(null);
+
+
+
+      }
         System.out.println("Output test is "+theInstructor);
         entityManager.remove(theInstructor);
     }
