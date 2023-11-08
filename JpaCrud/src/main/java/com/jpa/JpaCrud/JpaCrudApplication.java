@@ -32,9 +32,15 @@ public class JpaCrudApplication {
 			//findInstructorWithJoinFetch(appDao);
 			//updateInstructor(appDao);
 			//updateCourseDetails(appDao);
-			deleteInstructorWithCourse(appDao);
+			//deleteInstructorWithCourse(appDao);
+			deteCourseById(appDao);
 			//test file
 		};
+	}
+
+	private void deteCourseById(AppDao appDao) {
+		int theId=10;
+		appDao.deleteCourseById(theId);
 	}
 
 	private void deleteInstructorWithCourse(AppDao appDao) {
